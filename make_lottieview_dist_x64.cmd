@@ -13,6 +13,7 @@ set APP_DIR=%CD%\dist\%APP_NAME%\
 REM Cleanup dist folder
 rd /s /q "dist\%APP_NAME%" 2>nul
 del "dist\%APP_NAME%-x64.7z" 2>nul
+del "dist\%APP_NAME%-x64-setup.exe" 2>nul
 
 echo.
 echo ****************************************
