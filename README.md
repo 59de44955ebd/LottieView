@@ -2,7 +2,7 @@
 
 LottieView is a simple and small Windows desktop viewer for [Lottie animations](https://en.wikipedia.org/wiki/Lottie_(file_format)). It supports both JSON (`.json`, `.lottie_json`) and dotLottie (`.lottie`) files.
 
-It's completely minimalistic, its only purpose is to quickly (pre)view an animation file by double-clicking it in Explorer, after assigning LottieView as default viewer for the corresponding file extension, e.g. .lottie. One way to do this is to select `Open with...` from the Explorer context menu, then browse to the LottieView directory and select LottieView.exe, and then finally click on `Always use this app to open...`.
+It's completely minimalistic, its only purpose is to quickly (pre)view an animation file by double-clicking it in Explorer, after assigning LottieView as default viewer for the corresponding file extension, e.g. `.lottie`. One way to do this is to select `Open with...` from the Explorer context menu, then browse to the LottieView directory and select `LottieView.exe`, and then finally click on `Always use this app to open...`.
 
 LottieView can also load SVG files, so if you don't have a desktop viewer for SVG yet, you might also assign it as default viewer for the `.svg` extension.
 
