@@ -14,7 +14,6 @@ if not IS_FROZEN:
     sys.path.append(APP_DIR)
 
 from webview2.standalone import *
-
 from resources import *
 
 if IS_FROZEN:
@@ -64,7 +63,7 @@ class Main(WebView2):
                 filter_string = 'Lottie Files (*.lottie *.lottie_json *.json)\0*.lottie;*.lottie_json;*.json\0SVG Files (*.svg)\0*.svg\0\0'
             )
             if filename:
-                self.load_anim(filename)
+                self.load_file(filename)
 
         elif idm == IDM_PRINT:
             self.show_print_ui()
@@ -87,12 +86,6 @@ class Main(WebView2):
 
         elif idm == IDM_DEV_TOOLS:
             self.open_dev_tools()
-
-    ########################################
-    # Reset local profile to PREFERRED_COLOR_SCHEME.AUTO
-    ########################################
-    def on_webview_ready(self, webview):
-        webview.profile_apply_theme(PREFERRED_COLOR_SCHEME.AUTO)
 
     ########################################
     #
