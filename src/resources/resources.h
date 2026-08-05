@@ -1,0 +1,8 @@
+// Menu
+#define IDM_OPEN 101
+#define IDM_PRINT 102
+#define IDM_EXIT 199
+#define IDM_FULLSCREEN 200
+#define IDM_ESCAPE_FULLSCREEN 201
+#define IDM_ABOUT 300
+#define IDM_DEV_TOOLS 301
