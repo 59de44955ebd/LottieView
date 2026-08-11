@@ -6,7 +6,7 @@ import traceback
 import zipfile
 
 APP_NAME = 'LottieView'
-APP_VERSION = '0.1'
+APP_VERSION = '0.2'
 APP_DIR = os.path.dirname(__file__)
 IS_FROZEN = getattr(sys, 'frozen', False)
 
