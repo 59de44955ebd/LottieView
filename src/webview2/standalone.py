@@ -176,6 +176,13 @@ class WebView2(WebView2):
     ########################################
     #
     ########################################
+    def remove_menu(self, idm):
+        if self._mainwin.h_menu:
+            user32.RemoveMenu(self._mainwin.h_menu, idm, MF_BYCOMMAND)
+
+    ########################################
+    #
+    ########################################
     def set_window_title(self, text):
         user32.SetWindowTextW(self._mainwin.hwnd, text)
 

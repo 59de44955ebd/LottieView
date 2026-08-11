@@ -28,6 +28,7 @@ echo Copying resources...
 echo ****************************************
 copy "src\webview2\native\win-amd64\loader.dll" "dist\%APP_NAME%\%DATA_DIR%\"
 xcopy /e "src\app" "dist\%APP_NAME%\%DATA_DIR%\app\" >nul
+copy "src\update.ps1" "dist\%APP_NAME%\%DATA_DIR%\"
 
 echo.
 echo ****************************************

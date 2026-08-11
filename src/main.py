@@ -6,6 +6,7 @@ import traceback
 import zipfile
 
 APP_NAME = 'LottieView'
+APP_VERSION = '0.1'
 APP_DIR = os.path.dirname(__file__)
 IS_FROZEN = getattr(sys, 'frozen', False)
 
@@ -14,6 +15,7 @@ if not IS_FROZEN:
     sys.path.append(APP_DIR)
 
 from webview2.standalone import *
+from webview2.winapp.common_structs import SHELLEXECUTEINFOW
 from resources import *
 
 if IS_FROZEN:
@@ -58,12 +60,7 @@ class Main(WebView2):
     def on_menu(self, webview, idm):
 
         if idm == IDM_OPEN:
-            filename = self.show_open_file_dialog(
-                title = 'Open File',
-                filter_string = 'Lottie Files (*.lottie *.lottie_json *.json)\0*.lottie;*.lottie_json;*.json\0SVG Files (*.svg)\0*.svg\0\0'
-            )
-            if filename:
-                self.load_file(filename)
+            self.open_file()
 
         elif idm == IDM_PRINT:
             self.show_print_ui()
@@ -78,14 +75,48 @@ class Main(WebView2):
             self.escape_fullscreen()
 
         elif idm == IDM_ABOUT:
-            self.show_message_box(
-                f'{APP_NAME}\n\nA simple and small Windows desktop viewer for Lottie animation files (JSON and dotLottie) as well as SVG files.\n\n',
-                'About'
-            )
-            self.set_focus()
+            self.about()
+
+        elif idm == IDM_CHECK_UPDATE:
+            self.check_update()
 
         elif idm == IDM_DEV_TOOLS:
             self.open_dev_tools()
+
+    ########################################
+    #
+    ########################################
+    def open_file(self):
+        filename = self.show_open_file_dialog(
+            title = 'Open File',
+            filter_string = 'Lottie Files (*.lottie *.lottie_json *.json)\0*.lottie;*.lottie_json;*.json\0SVG Files (*.svg)\0*.svg\0\0'
+        )
+        if filename:
+            self.load_file(filename)
+
+    ########################################
+    #
+    ########################################
+    def about(self):
+        self.show_message_box(
+            (
+                f'{APP_NAME} v{APP_VERSION}\n\n'
+                'A simple and small Windows desktop viewer for Lottie animation files (JSON and dotLottie) as well as SVG files.\n\n'
+            ),
+            'About'
+        )
+
+    ########################################
+    #
+    ########################################
+    def check_update(self):
+        command = f'"{os.path.join(APP_DIR, "update.ps1")}" {APP_VERSION} "https://github.com/59de44955ebd/{APP_NAME}"'
+        if os.path.isfile(os.path.join(os.path.dirname(sys.executable), 'uninstall.exe')):
+            command += f' "{APP_NAME}-x64-setup.exe"'
+        sei = SHELLEXECUTEINFOW()
+        sei.lpFile = 'powershell.exe'
+        sei.lpParameters = command
+        shell32.ShellExecuteExW(byref(sei))
 
     ########################################
     #

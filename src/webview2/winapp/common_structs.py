@@ -114,6 +114,32 @@ class PAINTSTRUCT(Structure):
         ("rgbReserved",    BYTE * 32),
     ]
 
+class SHELLEXECUTEINFOW(Structure):
+    def __init__(self, *args, **kwargs):
+        super(SHELLEXECUTEINFOW, self).__init__(*args, **kwargs)
+        self.cbSize = sizeof(self)
+    _fields_ = [
+        ('cbSize',          DWORD),
+        ('fMask',           ULONG),
+        ('hwnd',            HWND),
+        ('lpVerb',          LPCWSTR),
+        ('lpFile',          LPCWSTR),
+        ('lpParameters',    LPCWSTR),
+        ('lpDirectory',     LPCWSTR),
+        ('nShow',           INT),
+        ('hInstApp',        HINSTANCE),
+        ('lpIDList',        LPVOID),  # PIDL
+        ('lpClass',         LPCWSTR),
+        ('hkeyClass',       HKEY),
+        ('dwHotKey',        DWORD),
+#  union {
+#    HANDLE hIcon;
+#    HANDLE hMonitor;
+#  } DUMMYUNIONNAME;
+        ('hIcon',           HANDLE),
+        ('hProcess',        HANDLE)
+    ]
+
 class SHFILEINFOW(Structure):
     _fields_ = [
         ("hIcon",         HICON),
